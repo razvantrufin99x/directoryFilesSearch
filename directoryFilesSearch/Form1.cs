@@ -43,86 +43,87 @@ namespace directoryFilesSearch
             IEnumerable<FileInfo> infos;
             List<string> allimagesingallery = new List<string>();
 
-            //infos.Append<dinf.EnumerateFiles("*.png")>;
-            
+
+            Bitmap bmp = new Bitmap(1024, 768);
+
+            Image tmpimg = bmp;
+
+
+
             infos = dinf.EnumerateFiles("*.png");
             this.textBox1.Text += "\r\n";
-
-
-            Image tmpimg;
-            
-
-
-            foreach (FileInfo info in infos)
-            {
+           
+                foreach (FileInfo info in infos)
+                {
+                
                 this.textBox1.Text += info.Name;
-                this.textBox1.Text += "\r\n";
-                allimagesingallery.Add(info.Name);
+                    this.textBox1.Text += "\r\n";
+                    allimagesingallery.Add(info.Name);
 
-                tmpimg = Image.FromFile(this.Text+"\\"+info.Name);
-                imageList1.Images.Add(tmpimg);
+                    tmpimg = Image.FromFile(this.Text + "\\" + info.Name);
+                    imageList1.Images.Add(tmpimg);
 
-                ig.counter++;
-            }
-
+                    ig.counter++;
+                }
+            
             infos = dinf.EnumerateFiles("*.jpg");
             this.textBox1.Text += "\r\n";
-            foreach (FileInfo info in infos)
-            {
-                this.textBox1.Text += info.Name;
-                this.textBox1.Text += "\r\n";
-                allimagesingallery.Add(info.Name);
+                foreach (FileInfo info in infos)
+                {
+                    this.textBox1.Text += info.Name;
+                    this.textBox1.Text += "\r\n";
+                    allimagesingallery.Add(info.Name);
 
-                tmpimg = Image.FromFile(this.Text + "\\" + info.Name);
-                imageList1.Images.Add(tmpimg);
+                    tmpimg = Image.FromFile(this.Text + "\\" + info.Name);
+                    imageList1.Images.Add(tmpimg);
 
-                ig.counter++;
-            }
+                    ig.counter++;
+                }
 
             infos = dinf.EnumerateFiles("*.jpeg");
             this.textBox1.Text += "\r\n";
-            foreach (FileInfo info in infos)
-            {
-                this.textBox1.Text += info.Name;
-                this.textBox1.Text += "\r\n";
-                allimagesingallery.Add(info.Name);
+                foreach (FileInfo info in infos)
+                {
+                    this.textBox1.Text += info.Name;
+                    this.textBox1.Text += "\r\n";
+                    allimagesingallery.Add(info.Name);
 
-                tmpimg = Image.FromFile(this.Text + "\\" + info.Name);
-                imageList1.Images.Add(tmpimg);
+                    tmpimg = Image.FromFile(this.Text + "\\" + info.Name);
+                    imageList1.Images.Add(tmpimg);
 
 
-                ig.counter++;
-            }
+                    ig.counter++;
+                }
 
             infos = dinf.EnumerateFiles("*.bmp");
             this.textBox1.Text += "\r\n";
-            foreach (FileInfo info in infos)
-            {
-                this.textBox1.Text += info.Name;
-                this.textBox1.Text += "\r\n";
-                allimagesingallery.Add(info.Name);
+                foreach (FileInfo info in infos)
+                {
+                    this.textBox1.Text += info.Name;
+                    this.textBox1.Text += "\r\n";
+                    allimagesingallery.Add(info.Name);
 
-                tmpimg = Image.FromFile(this.Text + "\\" + info.Name);
-                imageList1.Images.Add(tmpimg);
+                    tmpimg = Image.FromFile(this.Text + "\\" + info.Name);
+                    imageList1.Images.Add(tmpimg);
 
 
-                ig.counter++;
-            }
+                    ig.counter++;
+                }
 
             infos = dinf.EnumerateFiles("*.gif");
             this.textBox1.Text += "\r\n";
-            foreach (FileInfo info in infos)
-            {
-                this.textBox1.Text += info.Name;
-                this.textBox1.Text += "\r\n";
-                allimagesingallery.Add(info.Name);
+                foreach (FileInfo info in infos)
+                {
+                    this.textBox1.Text += info.Name;
+                    this.textBox1.Text += "\r\n";
+                    allimagesingallery.Add(info.Name);
 
-                tmpimg = Image.FromFile(this.Text + "\\" + info.Name);
-                imageList1.Images.Add(tmpimg);
+                    tmpimg = Image.FromFile(this.Text + "\\" + info.Name);
+                    imageList1.Images.Add(tmpimg);
 
 
-                ig.counter++;
-            }
+                    ig.counter++;
+                }
 
 
 
@@ -133,8 +134,8 @@ namespace directoryFilesSearch
             {
                 ig.images.Add(imageList1.Images[i]);
             }
-            
 
+            this.pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
             this.pictureBox1.BackgroundImage = ig.images[0];
             ig.current = 0;
 
@@ -151,7 +152,12 @@ namespace directoryFilesSearch
             {
                 ig.current--;
             }
-            this.pictureBox1.BackgroundImage = ig.images[ig.current];
+            
+            try
+            {
+                this.pictureBox1.BackgroundImage = ig.images[ig.current];
+            }
+            catch { }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -164,7 +170,10 @@ namespace directoryFilesSearch
             {
                 ig.current++;
             }
-            this.pictureBox1.BackgroundImage = ig.images[ig.current];
+            try
+            {
+                this.pictureBox1.BackgroundImage = ig.images[ig.current];
+            }catch{ }
         }
     }
 }
